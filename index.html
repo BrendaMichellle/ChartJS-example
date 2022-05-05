@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ChartJS Test </title>
+</head>
+<body>
+   <div class="chart__container">
+       <h4 class="container_title">
+           Example Stacked Chart 
+       </h4>
+       <hr>
+       <div class="graph__container">
+        <div class="systemGraph__toggle">
+            <canvas id="barchart" ></canvas>
+        </div>
+         <div class="referenceGraph__toggle" id="referenceGraph">
+         <canvas id="barchart2" width="400" height="400"></canvas>
+        </div>
+       </div>
+       <div class="toggle__container">
+        <button class="system__btn btn"> 
+           
+            System A
+        </button>
+        <button class="reference__btn btn" id="toggleBtn" onclick="toggleGraph()">
+            
+            Reference
+        </button>
+     </div>
+   </div> 
+
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <script>
+    
+    const ctx = document.getElementById('barchart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['System A', ],
+            datasets: [{
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Climate',
+                data: [1,],
+                backgroundColor: [
+                    '#62D147',           
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Human',
+                data: [.5, ],
+                backgroundColor: [
+                    "#B645EC",   
+                ],
+                borderColor: [
+                'transparent',                   
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Eco',
+                data: [.3, ],
+                backgroundColor: [
+                    "#F56666",                       
+                ],
+                borderColor: [
+                    'transparent',            
+                ],
+                borderWidth: 4
+            },{
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Resources',
+                data: [.25,],
+                backgroundColor: [
+                    "#47C9D1",     
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Water',
+                data: [.15,],
+                backgroundColor: [
+                    "#FFA217",                       
+                ],
+                borderColor: [
+                    'transparent',                    
+                ],
+                borderWidth: 4
+            },
+        ]
+        },
+        options: {
+            plugins: {
+            title: {
+                display: true,
+                text: 'System A'
+                },
+            legend: {
+                display: false
+            },
+            },
+            responsive: true,
+            scales: {
+                x: {
+                    display: false,
+                    grid: {
+                        display: false
+                    },
+                    stacked: true
+                },
+                y: {
+                    display: false,
+                    gridLines: {
+                        drawBorder: false,
+                    },
+                    ticks: {
+                        display:false,
+                    },
+                    grid: {
+                        display: false, 
+                    },
+                    stacked: true
+                },
+            }
+        }
+    });
+    
+
+    const ctx2 = document.getElementById('barchart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['Reference', ],
+            datasets: [{
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Climate',
+                data: [4,],
+                backgroundColor: [
+                    '#62D147',             
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Human',
+                data: [3, ],
+                backgroundColor: [
+                    "#B645EC",
+                ],
+                borderColor: [
+                'transparent',
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Eco',
+                data: [2, ],
+                backgroundColor: [
+                    "#F56666",
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            },{
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Resources',
+                data: [1, ],
+                backgroundColor: [
+                    "#47C9D1",
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            }, {
+                categoryPercentage: 0.5,
+                barPercentage: 0.9,
+                label: 'Water',
+                data: [.5, ],
+                backgroundColor: [
+                    "#FFA217",
+                ],
+                borderColor: [
+                    'transparent',
+                ],
+                borderWidth: 4
+            },
+        ]
+        },
+        options: {
+            plugins: {
+            title: {
+                display: true,
+                text: 'Reference'
+                },
+            legend: {
+                display: false
+            },
+            },
+            responsive: true,
+            scales: {
+                x: {
+                    display: false,
+                    grid: {
+                        display: false
+                    },
+                    stacked: true
+                },
+                y: {
+                    display: false,
+                    ticks: {
+                        display:false,
+                    },
+                    grid: {
+                        display: false
+                    },
+                    stacked: true
+                },
+            }
+        }
+    });
+    function toggleGraph() {
+        const referenceGraphContainer = document.getElementById('referenceGraph');
+        referenceGraphContainer.classList.toggle('toggle');
+    }
+    
+    const toggleBTN = document.getElementById('toggleBtn');
+    toggleBTN.addEventListener('click', () => {
+        console.log('hello');
+    })
+
+    
+
+    </script>
+</body>
+</html>
